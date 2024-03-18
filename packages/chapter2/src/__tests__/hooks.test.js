@@ -76,11 +76,11 @@ describe("hooks test", () => {
       setA("foo-change");
       expect(result).toBe(`a: foo-change, b: bar`);
 
-      // resetContext();
-      // setB("bar-change");
-      // expect(result).toBe(`a: foo-change, b: bar-change`);
+      resetContext();
+      setB("bar-change");
+      expect(result).toBe(`a: foo-change, b: bar-change`);
 
-      // expect(render).toBeCalledTimes(3);
+      expect(render).toBeCalledTimes(3);
     });
   });
 

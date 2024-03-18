@@ -2,10 +2,31 @@ import { createHooks } from "./hooks";
 import { render as updateElement } from "./render";
 
 function MyReact() {
-  const _render = () => {};
-  function render($root, rootComponent) {}
+  let prevRoot = null;
+  let rootFn = null;
+  let root = null;
 
-  const { useState, useMemo, resetContext: resetHookContext } = createHooks(_render);
+  // 리렌더링이 일어나야 함(callback)
+  const _render = () => {
+    resetHookContext();
+    const newRoot = rootFn();
+    console.log(newRoot, "rootComponent");
+
+    updateElement(root, newRoot, prevRoot);
+  };
+  function render($root, rootComponent) {
+    resetHookContext();
+    root = $root;
+    prevRoot = rootComponent();
+    rootFn = rootComponent.bind(this);
+    updateElement($root, prevRoot);
+  }
+
+  const {
+    useState,
+    useMemo,
+    resetContext: resetHookContext,
+  } = createHooks(_render);
 
   return { render, useState, useMemo };
 }
