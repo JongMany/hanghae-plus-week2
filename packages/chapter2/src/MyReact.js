@@ -10,9 +10,9 @@ function MyReact() {
   const _render = () => {
     resetHookContext();
     const newRoot = rootFn();
-    console.log(newRoot, "rootComponent");
 
     updateElement(root, newRoot, prevRoot);
+    prevRoot = newRoot;
   };
   function render($root, rootComponent) {
     resetHookContext();

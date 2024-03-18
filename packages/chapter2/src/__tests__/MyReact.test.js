@@ -77,10 +77,10 @@ describe("MyReact > ", () => {
         expect($root.innerHTML).toBe(
           `<div><p>1번째 자식</p><p>2번째 자식</p></div>`
         );
-        // fn(3);
-        // expect($root.innerHTML).toBe(
-        //   `<div><p>1번째 자식</p><p>2번째 자식</p><p>3번째 자식</p></div>`
-        // );
+        fn(3);
+        expect($root.innerHTML).toBe(
+          `<div><p>1번째 자식</p><p>2번째 자식</p><p>3번째 자식</p></div>`
+        );
       });
     });
   });
